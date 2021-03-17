@@ -7,11 +7,15 @@ function deepClone(data) {
   return JSON.parse(JSON.stringify(data));
 }
 
+function winOrLose() {
+  return Math.floor(Math.random() * 2);
+}
+
 function getWinners(i, games, nextRound) {
   const firstPair = games[i];
   const secondPair = games[i + 1];
-  const idx = Math.floor(Math.random() * 2);
-  const idx2 = Math.floor(Math.random() * 2);
+  const idx = winOrLose();
+  const idx2 = winOrLose();
   const winner = deepClone(firstPair[idx]);
   const winner2 = deepClone(secondPair[idx2]);
   winner.round_of = nextRound;
@@ -35,7 +39,7 @@ function generateBracket(roundOf64) {
           newGames.push(winners);
         } else {
           const firstPair = gamesThisRound[i];
-          const idx = Math.floor(Math.random() * 2);
+          const idx = winOrLose();
           const winner = deepClone(firstPair[idx]);
           winner.round_of = nextRound;
           const myregion = region <= 1 ? 0 : 1;
